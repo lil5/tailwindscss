@@ -538,3 +538,65 @@
     }
   }
 }
+
+@include describe('The dark-mode-selector mixin') {
+  @include it('should render colors for dark mode') {
+    $map-props: (
+      default: color,
+    );
+    $map-values: (
+      gray: (
+        100: #f7fafc,
+      ),
+      red: (
+        100: #fff5f5,
+      ),
+    );
+    $variants: (responsive, hover, focus, focus-within, active, group-hover);
+    @include assert {
+      @include output {
+        @include dark-mode-selector() {
+          @include color("#{$prefix}dark:", $theme-text-color, $variants-text-color, $separator);
+        }
+      }
+      @include expect {
+        .text-gray-100 {
+          color: #f7fafc;
+        }
+        .hover_text-gray-100:hover {
+          color: #f7fafc;
+        }
+        .focus_text-gray-100:focus {
+          color: #f7fafc;
+        }
+        .focus-within_text-gray-100:focus-within {
+          color: #f7fafc;
+        }
+        .active_text-gray-100:active {
+          color: #f7fafc;
+        }
+        .group:hover .group-hover_text-gray-100 {
+          color: #f7fafc;
+        }
+        .text-red-100 {
+          color: #fff5f5;
+        }
+        .hover_text-red-100:hover {
+          color: #fff5f5;
+        }
+        .focus_text-red-100:focus {
+          color: #fff5f5;
+        }
+        .focus-within_text-red-100:focus-within {
+          color: #fff5f5;
+        }
+        .active_text-red-100:active {
+          color: #fff5f5;
+        }
+        .group:hover .group-hover_text-red-100 {
+          color: #fff5f5;
+        }
+      }
+    }
+  }
+}
